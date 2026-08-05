@@ -41,15 +41,12 @@
 
 html {
   scroll-behavior: smooth;
-  overflow-x: hidden;
 }
 
 body {
-  min-width: 100vw;
   background: var(--bg);
   color: var(--ink);
   font-family: var(--font-sans);
-  overflow-x: hidden;
 }
 
 ::selection {
