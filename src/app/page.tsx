@@ -264,6 +264,7 @@ export default function Home() {
           transforming complex problems into intuitive,
           user-centered digital experiences that create real business impact.
         </p>
+        
 
         <div className="mt-8 flex gap-4">
           <Link
