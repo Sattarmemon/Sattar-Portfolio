@@ -502,7 +502,7 @@ export default function Home() {
                 <div className="pointer-events-none absolute -right-1.5 -top-1.5 h-3 w-3 border-r border-t border-accent/60" />
                 <div className="pointer-events-none absolute -bottom-1.5 -left-1.5 h-3 w-3 border-b border-l border-accent/60" />
                 <div className="pointer-events-none absolute -bottom-1.5 -right-1.5 h-3 w-3 border-b border-r border-accent/60" />
-                <div className="relative overflow-visible border border-line bg-bg">
+                <div className="relative overflow-hidden md:overflow-visible border border-line bg-bg">
                   <style>{badgeAnimationStyle}</style>
                   <Image
                     src={SattuImage}
