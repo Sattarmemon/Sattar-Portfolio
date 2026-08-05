@@ -1,0 +1,175 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #f2ede4;
+  --surface: #e8e2d8;
+  --ink: #1a1a18;
+  --muted: #5a5750;
+  --muted-2: #8c8880;
+  --line: #d8d2c6;
+  --accent: #1a1a18;
+  --accent-soft: #e4dfd5;
+  --gold: #ef6d28;
+  --gold-soft: #fcdbc7;
+  --dark: #1a1a18;
+  --dark-surface: #252420;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-muted-2: var(--muted-2);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-dark: var(--dark);
+  --color-dark-surface: var(--dark-surface);
+  --font-display: var(--font-fraunces);
+  --font-hero: var(--font-cormorant);
+  --font-archivo: var(--font-archivo-black);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-plex-mono);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background: var(--accent);
+  color: #fff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.frame-tag {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+}
+
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  color: var(--gold);
+}
+
+.font-hero {
+  font-family: var(--font-cormorant);
+}
+
+.section-label::before {
+  content: "";
+  display: block;
+  width: 28px;
+  height: 1px;
+  background: var(--gold);
+  flex-shrink: 0;
+}
+
+
+/* dark bg sections — line stays gold, readable */
+.bg-dark .section-label {
+  color: var(--gold);
+}
+
+.hairline {
+  border-color: var(--line);
+}
+
+.reveal {
+  animation: reveal-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.marquee-track {
+  animation: marquee 28s linear infinite;
+  will-change: transform;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes logoPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.75;
+  }
+}
+
+.logo-chip {
+  animation: logoPulse 2.8s ease-in-out infinite;
+}
+
+.logo-chip:hover {
+  transform: scale(1.08) rotate(10deg);
+}
+
+@keyframes brandRotate {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.brand-icon {
+  color: var(--gold);
+  transform-origin: 50% 50%;
+  animation: brandRotate 8s linear infinite;
+}
+
+.group:hover .brand-icon {
+  animation-duration: 4s;
+}
+
+/* Header/nav strip sizing tweaks */
+.nav-strip {
+  max-width: 32.5rem; /* 520px */
+}
+
+/* Premium hero typography removed (reverted) */
+
