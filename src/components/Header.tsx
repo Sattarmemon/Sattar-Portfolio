@@ -22,12 +22,12 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 w-full px-4 pt-5 transition-all duration-300 md:px-8">
+    <header className="sticky top-0 z-50 w-full px-4 pt-4 transition-all duration-300 md:px-8">
       <div
         className={`mx-auto flex w-full nav-strip items-center justify-between gap-2 rounded-full border border-ink/10 bg-[#faf6ee] px-2.5 shadow-[0_8px_30px_rgba(26,26,24,0.08)] transition-all duration-300 ${
           scrolled ? "backdrop-blur-2xl bg-[#faf6ee]/90" : ""
         }`}
-        style={{ paddingTop: "0.5rem", paddingBottom: "0.5rem" }}
+        style={{ paddingTop: "0.4375rem", paddingBottom: "0.4375rem" }}
       >
         <Link href="/" className="flex items-center pl-1 gap-2 group">
           <span className="inline-flex transition-transform duration-300 group-hover:scale-125">

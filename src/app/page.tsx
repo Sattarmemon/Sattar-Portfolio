@@ -233,10 +233,10 @@ export default function Home() {
   });
 
   return (
-    <main className="overflow-x-hidden">
+    <main>
 
 {/* HERO */}
-<section className="relative min-h-screen border-b border-line overflow-hidden pt-1 md:pt-0">
+<section className="relative min-h-screen border-b border-line overflow-hidden">
   <div className="mx-auto flex flex-col lg:flex-row min-h-screen max-w-7xl px-6 md:px-10">
 
     {/* LEFT */}
