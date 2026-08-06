@@ -68,6 +68,91 @@ body {
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
   }
+
+  .footer-email-link,
+  .footer-email-label,
+  .footer-email-duplicate,
+  .footer-email-underline {
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.footer-email-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  text-decoration: none;
+  color: #fff;
+  transition: color 0.45s cubic-bezier(0.22, 1, 0.36, 1), transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform, color;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.footer-email-link:hover,
+.footer-email-link:focus-visible,
+.footer-email-link.is-active {
+  color: var(--gold);
+}
+
+.footer-email-text {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  padding-bottom: 2px;
+}
+
+.footer-email-label,
+.footer-email-duplicate {
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform, opacity;
+}
+
+.footer-email-label {
+  transform: translate3d(0, 0, 0);
+  opacity: 1;
+}
+
+.footer-email-duplicate {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  opacity: 0;
+  transform: translate3d(0, 12px, 0);
+  pointer-events: none;
+}
+
+.footer-email-link:hover .footer-email-label,
+.footer-email-link:focus-visible .footer-email-label,
+.footer-email-link.is-active .footer-email-label {
+  transform: translate3d(0, -7px, 0);
+  opacity: 0;
+}
+
+.footer-email-link:hover .footer-email-duplicate,
+.footer-email-link:focus-visible .footer-email-duplicate,
+.footer-email-link.is-active .footer-email-duplicate {
+  transform: translate3d(0, 0, 0);
+  opacity: 1;
+}
+
+.footer-email-underline {
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform-origin: left center;
+  transform: scaleX(0);
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.footer-email-link:hover .footer-email-underline,
+.footer-email-link:focus-visible .footer-email-underline,
+.footer-email-link.is-active .footer-email-underline {
+  transform: scaleX(1);
 }
 
 .frame-tag {
