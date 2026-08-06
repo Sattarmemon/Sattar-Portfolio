@@ -236,11 +236,11 @@ export default function Home() {
     <main>
 
 {/* HERO */}
-<section className="relative min-h-screen border-b border-line overflow-hidden pt-4 md:pt-0">
-  <div className="mx-auto flex flex-col lg:flex-row min-h-screen max-w-7xl px-6 md:px-10">
+<section className="relative min-h-screen border-b border-line pt-4 md:pt-0">
+  <div className="mx-auto flex min-h-screen max-w-7xl flex-col px-6 md:px-10 lg:flex-row">
 
     {/* LEFT */}
-    <div className="flex w-full lg:w-1/2 items-center">
+    <div className="flex w-full items-center lg:w-1/2">
       <div className="max-w-xl">
 
         <p className="section-label">
@@ -286,15 +286,15 @@ export default function Home() {
     </div>
 
     {/* RIGHT */}
-    <div className="w-full lg:w-1/2 flex items-end justify-center mt-10 lg:mt-0">
+    <div className="mt-10 flex w-full items-end justify-center lg:mt-0 lg:w-1/2">
 
-      <div className="relative w-full max-w-[520px] h-full flex items-end">
+      <div className="relative flex w-full max-w-[520px] items-end justify-center overflow-visible">
 
         <img
           src="/Sattupseditimg2.png"
           alt="Sattar Memon"
           draggable={false}
-          className="w-full h-auto object-contain object-bottom select-none"
+          className="h-auto w-full object-contain object-bottom select-none"
         />
 
       </div>

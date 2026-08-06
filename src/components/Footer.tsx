@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState, type MouseEvent } from "react";
+import { useState } from "react";
 
 const email = "sattarmemon499@gmail.com";
 const socials = [
@@ -31,8 +31,6 @@ const sharedEntrance = {
 
 export default function Footer() {
   const [copied, setCopied] = useState(false);
-  const [emailActive, setEmailActive] = useState(false);
-  const [emailOffset, setEmailOffset] = useState({ x: 0, y: 0 });
 
   const handleCopy = async () => {
     try {
@@ -42,25 +40,6 @@ export default function Footer() {
     } catch {
       setCopied(false);
     }
-  };
-
-  const handleEmailMove = (event: MouseEvent<HTMLAnchorElement>) => {
-    if (window.innerWidth < 768) {
-      return;
-    }
-
-    const rect = event.currentTarget.getBoundingClientRect();
-    const relativeX = (event.clientX - rect.left) / rect.width - 0.5;
-    const relativeY = (event.clientY - rect.top) / rect.height - 0.5;
-
-    setEmailOffset({
-      x: Math.max(-2.6, Math.min(2.6, relativeX * 2.6)),
-      y: Math.max(-2.2, Math.min(2.2, relativeY * 2.2)),
-    });
-  };
-
-  const resetEmailOffset = () => {
-    setEmailOffset({ x: 0, y: 0 });
   };
 
   return (
@@ -104,27 +83,8 @@ export default function Footer() {
           className="mt-8 flex flex-wrap items-center justify-center gap-3"
         >
           <div className="flex items-center gap-3 border-b border-white/30 pb-1.5">
-            <a
-              href={`mailto:${email}`}
-              onMouseEnter={() => setEmailActive(true)}
-              onMouseLeave={() => {
-                setEmailActive(false);
-                resetEmailOffset();
-              }}
-              onMouseMove={handleEmailMove}
-              onFocus={() => setEmailActive(true)}
-              onBlur={() => {
-                setEmailActive(false);
-                resetEmailOffset();
-              }}
-              className={`footer-email-link ${emailActive ? "is-active" : ""} text-base font-medium text-white md:text-lg`}
-              style={{ transform: `translate3d(${emailOffset.x}px, ${emailOffset.y}px, 0)` }}
-            >
-              <span className="footer-email-text" aria-hidden="true">
-                <span className="footer-email-label">{email}</span>
-                <span className="footer-email-duplicate">{email}</span>
-              </span>
-              <span className="footer-email-underline" aria-hidden="true" />
+            <a href={`mailto:${email}`} className="text-base font-medium text-white md:text-lg">
+              {email}
             </a>
             <button
               type="button"
