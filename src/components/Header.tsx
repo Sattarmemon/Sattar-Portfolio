@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image";
+import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 
 const navItems = [
@@ -21,7 +21,30 @@ export default function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    if (typeof document === "undefined") return;
+
+    const previousBodyOverflow = document.body.style.overflow;
+    const previousBodyOverflowX = document.body.style.overflowX;
+    const previousHtmlOverflow = document.documentElement.style.overflow;
+
+    if (open) {
+      document.body.style.overflow = "hidden";
+      document.body.style.overflowX = "hidden";
+      document.documentElement.style.overflow = "hidden";
+    }
+
+    return () => {
+      document.body.style.overflow = previousBodyOverflow;
+      document.body.style.overflowX = previousBodyOverflowX;
+      document.documentElement.style.overflow = previousHtmlOverflow;
+    };
+  }, [open]);
+
+  const closeMenu = () => setOpen(false);
+
   return (
+    <>
     <header className="sticky top-0 z-50 w-full px-4 pt-4 transition-all duration-300 md:px-8">
       <div
         className={`mx-auto flex w-full nav-strip items-center justify-between gap-2 rounded-full border border-ink/10 bg-[#faf6ee] px-2.5 shadow-[0_8px_30px_rgba(26,26,24,0.08)] transition-all duration-300 ${
@@ -54,20 +77,82 @@ export default function Header() {
           {open ? <X className="h-6 w-6 text-ink" /> : <Menu className="h-6 w-6 text-ink" />}
         </button>
       </div>
-      {open && (
-        <div className="mx-auto mt-2 w-full nav-strip rounded-3xl border border-ink/10 bg-[#faf6ee] px-6 py-5 shadow-lg md:hidden">
-          <nav className="flex flex-col gap-4">
-            {navItems.map((item) => (
-              <Link key={item.href} href={item.href} onClick={() => setOpen(false)} className="text-sm text-muted transition-colors duration-200 hover:text-gold">
-                {item.label}
-              </Link>
-            ))}
-            <a href="/SattufinalCV.pdf" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-sm font-medium text-ink transition-colors duration-200 hover:text-gold">
-              Resume <ArrowUpRight className="h-4 w-4" />
-            </a>
-          </nav>
-        </div>
-      )}
     </header>
+
+    <AnimatePresence>
+      {open && (
+        <>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className="fixed inset-0 z-[55] bg-[#f7efe4]/80 backdrop-blur-[12px] md:hidden"
+            onClick={closeMenu}
+          />
+          <motion.div
+            initial={{ opacity: 0, y: -40 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -40 }}
+            transition={{ duration: 0.45, ease: "easeOut" }}
+            className="fixed inset-0 z-[60] flex flex-col overflow-y-auto px-4 pb-6 pt-[max(1rem,env(safe-area-inset-top))] md:hidden"
+          >
+            <div className="mx-auto flex w-full max-w-2xl flex-1 flex-col rounded-[32px] border border-black/10 bg-[#f7efe4]/95 p-4 shadow-[0_20px_70px_rgba(15,15,15,0.16)]">
+              <div className="flex items-center justify-end">
+                <button
+                  aria-label="Close menu"
+                  className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-ink/10 bg-white/70 text-ink transition-colors duration-200 hover:bg-[#E56A2E] hover:text-white"
+                  onClick={closeMenu}
+                >
+                  <X className="h-5 w-5" />
+                </button>
+              </div>
+
+              <nav className="mt-4 flex-1">
+                <ul className="flex flex-col gap-2">
+                  {navItems.map((item, index) => (
+                    <motion.li
+                      key={item.href}
+                      initial={{ opacity: 0, y: 16 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 16 }}
+                      transition={{ duration: 0.24, ease: "easeOut", delay: index * 0.06 }}
+                      className="group"
+                    >
+                      <Link
+                        href={item.href}
+                        onClick={closeMenu}
+                        className="flex min-h-[56px] items-center gap-4 border-b border-black/10 py-4 transition-colors duration-200 hover:text-[#E56A2E]"
+                      >
+                        <span className="text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-[#E56A2E]">
+                          {`0${index + 1}`}
+                        </span>
+                        <span className="font-display text-[1.95rem] leading-none tracking-[-0.02em] text-ink sm:text-[2.2rem]">
+                          {item.label}
+                        </span>
+                      </Link>
+                    </motion.li>
+                  ))}
+                </ul>
+              </nav>
+
+              <motion.a
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.24, ease: "easeOut", delay: navItems.length * 0.06 + 0.04 }}
+                href="/SattufinalCV.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={closeMenu}
+                className="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-ink px-5 py-3.5 text-sm font-semibold uppercase tracking-[0.2em] text-bg transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#E56A2E]"
+              >
+                Resume <ArrowUpRight className="h-4 w-4" />
+              </motion.a>
+            </div>
+          </motion.div>
+        </>
+      )}
+    </AnimatePresence>
+    </>
   );
 }
