@@ -45,7 +45,7 @@ export default function Header() {
           ))}
         </nav>
         <div className="hidden md:flex">
-          <a href="/sattar-cv.pdf" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 rounded-full bg-ink px-3.5 py-1.5 text-sm font-medium text-bg transition duration-200 hover:-translate-y-0.5 hover:bg-gold hover:text-bg">
+          <a href="/SattufinalCV.pdf" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 rounded-full bg-ink px-3.5 py-1.5 text-sm font-medium text-bg transition duration-200 hover:-translate-y-0.5 hover:bg-gold hover:text-bg">
             Resume
             <ArrowUpRight className="h-4 w-4" />
           </a>
@@ -62,7 +62,7 @@ export default function Header() {
                 {item.label}
               </Link>
             ))}
-            <a href="/sattar-cv.pdf" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-sm font-medium text-ink transition-colors duration-200 hover:text-gold">
+            <a href="/SattufinalCV.pdf" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-sm font-medium text-ink transition-colors duration-200 hover:text-gold">
               Resume <ArrowUpRight className="h-4 w-4" />
             </a>
           </nav>
