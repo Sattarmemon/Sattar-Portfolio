@@ -506,7 +506,7 @@ export default function Home() {
                   <style>{badgeAnimationStyle}</style>
                   <Image
                     src={SattuImage}
-                    alt="Sattu"
+                    alt="Sattar"
                     className="h-full w-full object-cover"
                     priority
                   />

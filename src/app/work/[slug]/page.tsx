@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { projects, getProjectBySlug } from "@/data/projects";
+import { projects, getProjectBySlug } from "@/data/projects_work";
 
 export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
@@ -136,12 +136,24 @@ export default async function CaseStudyPage({
       <div className="w-full bg-bg px-6 pb-8 pt-2 md:px-10 md:pb-10">
         <div className="mx-auto max-w-6xl overflow-hidden rounded-2xl">
           {project.coverImage ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              src={project.coverImage}
-              alt={project.title}
-              className="w-full h-auto block object-cover object-center"
-            />
+            // If this is BAAZ, constrain the cover to the same aspect used in the listing
+            project.slug === "baaz" ? (
+              <div className="aspect-[16/10] w-full overflow-hidden">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={project.coverImage}
+                  alt={project.title}
+                  className="h-full w-full object-cover object-center"
+                />
+              </div>
+            ) : (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={project.coverImage}
+                alt={project.title}
+                className="w-full h-auto block object-cover object-center"
+              />
+            )
           ) : (
             <div className="flex aspect-video w-full items-center justify-center border border-dashed border-white/10 bg-white/5">
               <span className="frame-tag text-white/20">Cover image — {project.title}</span>

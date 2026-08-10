@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import ProjectCard from "@/components/ProjectCard";
-import { projects } from "@/data/projects";
+import { projects } from "@/data/projects_work";
 
 export const metadata: Metadata = {
   title: "Work — Sattar Memon",
