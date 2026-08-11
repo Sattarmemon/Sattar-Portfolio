@@ -134,15 +134,26 @@ export default async function CaseStudyPage({
 
       {/* COVER IMAGE */}
       <div className="w-full bg-bg px-6 pb-8 pt-2 md:px-10 md:pb-10">
-        <div className="mx-auto max-w-6xl overflow-hidden rounded-2xl">
+        <div className="mx-auto max-w-6xl">
           {project.coverImage ? (
-            <div className="aspect-[16/10] w-full overflow-hidden">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={project.coverImage}
-                alt={project.title}
-                className="h-full w-full object-cover object-center"
-              />
+            <div className="mx-auto w-full max-w-5xl overflow-hidden rounded-[12px]">
+              {project.slug === "agentflow" ? (
+                /* eslint-disable-next-line @next/next/no-img-element */
+                <img
+                  src={project.coverImage}
+                  alt={project.title}
+                  className="w-full h-auto object-contain object-center"
+                />
+              ) : (
+                <div className="aspect-[16/10] w-full overflow-hidden">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={project.coverImage}
+                    alt={project.title}
+                    className="h-full w-full object-contain object-center"
+                  />
+                </div>
+              )}
             </div>
           ) : (
             <div className="flex aspect-video w-full items-center justify-center border border-dashed border-white/10 bg-white/5">
