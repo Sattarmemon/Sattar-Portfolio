@@ -3,6 +3,7 @@ import { Playfair_Display, DM_Sans, DM_Mono, Cormorant_Garamond, Archivo_Black }
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import PageLoader from "@/components/PageLoader";
 
 const playfair = Playfair_Display({
   variable: "--font-fraunces",
@@ -60,6 +61,7 @@ export default function RootLayout({
         className={`${playfair.variable} ${cormorant.variable} ${dmSans.variable} ${archivoBlack.variable} ${dmMono.variable} antialiased`}
       >
         <Header />
+        <PageLoader />
         {children}
         <Footer />
       </body>
