@@ -113,6 +113,65 @@ export const projects = [
       "Live preview, real-time testing and deployment",
     ],
   },
+  {
+    slug: "astrologer-mobile-app",
+    index: "09",
+    title: "Astrologer Mobile App",
+    tag: "Astrology App",
+    tags: ["Mobile", "Lifestyle", "Consultation"],
+    summary:
+      "A spiritual and lifestyle mobile experience that helps users discover astrologers, book consultations, explore horoscopes, and stay engaged through personalized guidance.",
+    role:
+      "Product UX Designer — Mobile flows, onboarding, discovery, consultation journey, app experience",
+    category: "Mobile App / Astrology & Wellness",
+    tools: "Figma, User Flows, Mobile UX",
+    liveLink: "",
+    figmaLink: "",
+    coverImage: "/projects/Astrologer%20Mobile%20App.png",
+    sections: [
+      {
+        eyebrow: "Problem & Context",
+        heading: "A fragmented astrology experience",
+        body:
+          "Astrology apps often combine spiritual guidance, bookable consultations, horoscope content, and user trust in a single experience — but many interfaces feel cluttered, unclear, and difficult to navigate. The opportunity was to design an app that felt premium, credible, and easy for users to trust at first glance.",
+      },
+      {
+        eyebrow: "Role & Responsibilities",
+        heading: "Designing the mobile-first journey",
+        body:
+          "I led the mobile product experience, crafting the end-to-end user journey from onboarding and profile discovery to astrology consultations, horoscope engagement, and repeat app usage.",
+      },
+      {
+        eyebrow: "Research & Insights",
+        heading: "Users wanted clarity and confidence",
+        body:
+          "Users were not just looking for astrology content; they wanted a trusted experience that made it easy to discover the right astrologer, understand pricing, and feel comfortable booking a consultation.",
+        bullets: [
+          "Trust and credibility are key in spiritual services",
+          "Discovery needed to feel personalized and guided",
+          "The consultation flow had to reduce friction and uncertainty",
+        ],
+      },
+      {
+        eyebrow: "Solution",
+        heading: "A calm, premium astrology experience",
+        body:
+          "Designed a polished mobile app focused on intuitive discovery, clear onboarding, personalized recommendations, and a frictionless consultation flow that balances emotional trust with ease of use.",
+      },
+      {
+        eyebrow: "Outcome & Impact",
+        heading: "A product that feels personal and reliable",
+        body:
+          "The result is a mobile experience that helps users move from interest to action with confidence — whether they are exploring daily guidance, finding a suitable astrologer, or booking a consultation.",
+      },
+    ],
+    outcomes: [
+      "Mobile-first astrology discovery flow",
+      "Trust-building onboarding and profile experience",
+      "Clear consultation booking journey",
+      "Personalized horoscope and expert engagement",
+    ],
+  },
 ];
 
 export const getProjectBySlug = (slug: string) =>
