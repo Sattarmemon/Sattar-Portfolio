@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, type MouseEvent } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, Menu, X } from "lucide-react";
@@ -43,6 +43,20 @@ export default function Header() {
 
   const closeMenu = () => setOpen(false);
 
+  const handleCvDownload = (event: MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+
+    const link = document.createElement("a");
+    link.href = "/SattarfinalCV.pdf";
+    link.download = "SattarfinalCV.pdf";
+    link.rel = "noopener noreferrer";
+    link.target = "_blank";
+
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <>
     <header className="sticky top-0 z-50 w-full px-4 pt-4 transition-all duration-300 md:px-8">
@@ -67,7 +81,11 @@ export default function Header() {
           ))}
         </nav>
         <div className="hidden md:flex">
-          <a href="/SattufinalCV.pdf" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 rounded-full bg-ink px-3.5 py-1.5 text-sm font-medium text-bg transition duration-200 hover:-translate-y-0.5 hover:bg-gold hover:text-bg">
+          <a
+            href="/SattarfinalCV.pdf"
+            onClick={handleCvDownload}
+            className="inline-flex items-center gap-1 rounded-full bg-ink px-3.5 py-1.5 text-sm font-medium text-bg transition duration-200 hover:-translate-y-0.5 hover:bg-gold hover:text-bg"
+          >
             Resume
             <ArrowUpRight className="h-4 w-4" />
           </a>
@@ -139,10 +157,11 @@ export default function Header() {
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.24, ease: "easeOut", delay: navItems.length * 0.06 + 0.04 }}
-                href="/SattufinalCV.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={closeMenu}
+                href="/SattarfinalCV.pdf"
+                onClick={(event) => {
+                  closeMenu();
+                  handleCvDownload(event);
+                }}
                 className="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-ink px-5 py-3.5 text-sm font-semibold uppercase tracking-[0.2em] text-bg transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#E56A2E]"
               >
                 Resume <ArrowUpRight className="h-4 w-4" />
