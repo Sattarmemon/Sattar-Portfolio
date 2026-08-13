@@ -83,7 +83,12 @@ export default function Footer() {
           className="mt-8 flex flex-wrap items-center justify-center gap-3"
         >
           <div className="flex items-center gap-3 border-b border-white/30 pb-1.5">
-            <a href={`mailto:${email}`} className="text-base font-medium text-white md:text-lg">
+            <a
+              href={`https://mail.google.com/mail/?view=cm&fs=1&to=${email}`}
+              target="_blank"
+              rel="noreferrer"
+              className="text-base font-medium text-white md:text-lg"
+            >
               {email}
             </a>
             <button

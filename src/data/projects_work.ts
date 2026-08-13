@@ -172,6 +172,58 @@ export const projects = [
       "Personalized horoscope and expert engagement",
     ],
   },
+  {
+    slug: "hospital-management-system",
+    index: "10",
+    title: "Hospital Management System",
+    tag: "Healthcare",
+    tags: ["Healthcare", "Web App", "Hospital Management"],
+    summary:
+      "A comprehensive hospital management platform that streamlines reception, doctor workflows, and pharmacy operations across a secure admin dashboard.",
+    role:
+      "Product & UX Designer — System flows, dashboards, module interfaces, admin panels",
+    category: "Healthcare / Hospital Management",
+    tools: "Figma, FigJam",
+    liveLink: "",
+    figmaLink: "",
+    coverImage: "",
+    sections: [
+      {
+        eyebrow: "Problem & Context",
+        heading: "The challenge",
+        body:
+          "Hospitals struggled with fragmented patient intake, unclear appointment handoffs, and disconnected pharmacy processes. The goal was to centralize operations while reducing admin overhead and clinical friction.",
+      },
+      {
+        eyebrow: "Role & Responsibilities",
+        heading: "What I owned",
+        body:
+          "Led product and UX design for core modules, defined information architecture for multi-role access (receptionists, doctors, pharmacists) and delivered module-level UI patterns and flows.",
+      },
+      {
+        eyebrow: "Modules",
+        heading: "Key modules showcased",
+        body: "This case study highlights three primary modules with screen examples: Reception, Doctor, and Pharmacy.",
+        images: [
+          "/projects/Reception Module.png",
+          "/projects/Doctore Module.png",
+          "/projects/Pharmacy Module.png",
+        ],
+      },
+      {
+        eyebrow: "Outcome & Scale",
+        heading: "Impact & scope",
+        body:
+          "Delivered a design system and flows that supported 10 modules and 220+ screen designs across the product — improving patient throughput, reducing admin time, and standardizing clinical handoffs.",
+      },
+    ],
+    outcomes: [
+      "Streamlined patient intake",
+      "Improved appointment and consultation flow",
+      "Integrated pharmacy inventory and dispensing",
+      "10 modules, 220+ screens — full software design",
+    ],
+  },
 ];
 
 export const getProjectBySlug = (slug: string) =>

@@ -3,6 +3,7 @@ export type ProjectSection = {
   eyebrow: string;
   body: string;
   bullets?: string[];
+  images?: string[];
 };
 
 export type Project = {

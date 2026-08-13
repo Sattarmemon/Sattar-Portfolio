@@ -2,28 +2,37 @@ import Link from "next/link";
 import { Project } from "@/data/projects";
 
 export default function ProjectCard({ project }: { project: Project }) {
+  const thumbnail =
+    project.coverImage && project.coverImage.length > 0
+      ? project.coverImage
+      : project.sections && project.sections.length
+      ? // prefer the last image in the first section that has images
+        (() => {
+          const s = project.sections.find((sec) => (sec as any).images && (sec as any).images.length);
+          if (!s) return "";
+          const imgs = (s as any).images as string[];
+          return imgs[imgs.length - 1] || imgs[0] || "";
+        })()
+      : "";
+
   return (
     <Link
       href={`/work/${project.slug}`}
       className="group flex flex-col gap-0 border-b border-line/40 py-12 first:pt-0 last:border-none md:flex-row md:items-center md:gap-12 md:py-16"
     >
-      {/* Image — large, left */}
-      <div className="relative w-full shrink-0 overflow-hidden rounded-2xl md:w-[46%] lg:w-[48%]">
-        <div className="aspect-[16/10] w-full overflow-hidden bg-white/5">
-          {project.coverImage ? (
-            // eslint-disable-next-line @next/next/no-img-element
+      {/* Image — large, left (only when a thumbnail exists) */}
+      {thumbnail ? (
+        <div className="relative w-full shrink-0 overflow-hidden rounded-2xl md:w-[46%] lg:w-[48%]">
+          <div className="aspect-[16/10] w-full overflow-hidden bg-white/5">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={project.coverImage}
+              src={thumbnail}
               alt={project.title}
               className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
             />
-          ) : (
-            <div className="flex h-full w-full items-center justify-center">
-              <span className="frame-tag text-white/20">{project.title}</span>
-            </div>
-          )}
+          </div>
         </div>
-      </div>
+      ) : null}
 
       {/* Text — right */}
       <div className="mt-6 flex flex-1 flex-col md:mt-0 md:justify-center">

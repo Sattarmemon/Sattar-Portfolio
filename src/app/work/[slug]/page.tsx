@@ -132,10 +132,10 @@ export default async function CaseStudyPage({
         </div>
       </section>
 
-      {/* COVER IMAGE */}
-      <div className="w-full bg-bg px-6 pb-8 pt-2 md:px-10 md:pb-10">
-        <div className="mx-auto max-w-6xl">
-          {project.coverImage ? (
+      {/* COVER IMAGE (only show when provided) */}
+      {project.coverImage ? (
+        <div className="w-full bg-bg px-6 pb-8 pt-2 md:px-10 md:pb-10">
+          <div className="mx-auto max-w-6xl">
             <div className="mx-auto w-full max-w-5xl overflow-hidden rounded-[12px]">
               {project.slug === "agentflow" ? (
                 /* eslint-disable-next-line @next/next/no-img-element */
@@ -155,13 +155,9 @@ export default async function CaseStudyPage({
                 </div>
               )}
             </div>
-          ) : (
-            <div className="flex aspect-video w-full items-center justify-center border border-dashed border-white/10 bg-white/5">
-              <span className="frame-tag text-white/20">Cover image — {project.title}</span>
-            </div>
-          )}
+          </div>
         </div>
-      </div>
+      ) : null}
 
       {/* CASE STUDY CONTENT — light bg */}
       <section className="bg-bg px-6 py-12 md:px-10 md:py-16">
@@ -189,6 +185,18 @@ export default async function CaseStudyPage({
                       </li>
                     ))}
                   </ul>
+                )}
+                {section.images && (
+                  <div className="mt-6 space-y-4">
+                    {section.images.map((img) => (
+                      <div key={img} className="mx-auto w-full max-w-5xl overflow-hidden rounded-[12px]">
+                        <div className="aspect-[16/10] w-full overflow-hidden">
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img src={img} alt={`${project.title} module`} className="h-full w-full object-contain" />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 )}
               </div>
             ))}
