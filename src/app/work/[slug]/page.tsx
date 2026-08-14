@@ -132,8 +132,8 @@ export default async function CaseStudyPage({
         </div>
       </section>
 
-      {/* COVER IMAGE (only show when provided) */}
-      {project.coverImage ? (
+      {/* COVER IMAGE */}
+      {project.coverImage && (
         <div className="w-full bg-bg px-6 pb-8 pt-2 md:px-10 md:pb-10">
           <div className="mx-auto max-w-6xl">
             <div className="mx-auto w-full max-w-5xl overflow-hidden rounded-[12px]">
@@ -157,7 +157,7 @@ export default async function CaseStudyPage({
             </div>
           </div>
         </div>
-      ) : null}
+      )}
 
       {/* CASE STUDY CONTENT — light bg */}
       <section className="bg-bg px-6 py-12 md:px-10 md:py-16">
@@ -186,13 +186,17 @@ export default async function CaseStudyPage({
                     ))}
                   </ul>
                 )}
-                {section.images && (
-                  <div className="mt-6 space-y-4">
-                    {section.images.map((img) => (
-                      <div key={img} className="mx-auto w-full max-w-5xl overflow-hidden rounded-[12px]">
-                        <div className="aspect-[16/10] w-full overflow-hidden">
+                {section.images && section.images.length > 0 && (
+                  <div className="mt-8 space-y-6">
+                    {section.images.map((img, imgIdx) => (
+                      <div key={imgIdx} className="w-full rounded-[12px] overflow-hidden bg-white/5">
+                        <div className="w-full flex items-center justify-center">
                           {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img src={img} alt={`${project.title} module`} className="h-full w-full object-contain" />
+                          <img
+                            src={img}
+                            alt={`${section.heading} - Image ${imgIdx + 1}`}
+                            className="w-full h-auto object-contain"
+                          />
                         </div>
                       </div>
                     ))}

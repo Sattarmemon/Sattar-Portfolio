@@ -224,6 +224,58 @@ export const projects = [
       "10 modules, 220+ screens — full software design",
     ],
   },
+  {
+    slug: "dashboard-design",
+    index: "11",
+    title: "Dashboard Design",
+    tag: "Dashboard",
+    tags: ["Dashboard", "Web App", "Admin Panel"],
+    summary:
+      "A comprehensive dashboard design that provides clear data visualization, intuitive controls, and seamless navigation for admin and user management.",
+    role:
+      "Product & UX Designer — Dashboard layout, data visualization, information architecture, UI patterns",
+    category: "Dashboard / Admin Panel",
+    tools: "Figma, FigJam",
+    liveLink: "",
+    figmaLink: "",
+    // coverImage: "/projects/Dashboard-1.png",
+    sections: [
+      {
+        eyebrow: "Problem & Context",
+        heading: "The challenge",
+        body:
+          "Dashboards often present too much information at once, making it difficult for users to find key metrics and take action. The goal was to create a clean, organized dashboard that prioritizes key information while remaining flexible for different user roles and use cases.",
+      },
+      {
+        eyebrow: "Role & Responsibilities",
+        heading: "What I owned",
+        body:
+          "Led product and UX design for the dashboard interface, defined information hierarchy, created reusable dashboard components, and delivered a scalable design system for data visualization.",
+      },
+      {
+        eyebrow: "Design Overview",
+        heading: "Dashboard screens & layouts",
+        body: "This case study showcases the complete dashboard design with multiple views and variations for different user contexts and data states.",
+        images: [
+          "/projects/Dashboard-1.png",
+          "/projects/Dashboard-2.png",
+          "/projects/Dashboard-3.png",
+        ],
+      },
+      {
+        eyebrow: "Outcome & Impact",
+        heading: "Result & scalability",
+        body:
+          "Delivered a cohesive dashboard design system with clear information hierarchy, reusable components, and flexible layouts that adapt to different data sets and user needs.",
+      },
+    ],
+    outcomes: [
+      "Clear data hierarchy and visualization",
+      "Reusable dashboard components",
+      "Admin and user role flexibility",
+      "Scalable design system for dashboards",
+    ],
+  },
 ];
 
 export const getProjectBySlug = (slug: string) =>
