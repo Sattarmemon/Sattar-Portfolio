@@ -236,7 +236,7 @@ export default function Home() {
     <main>
 
 {/* HERO */}
-<section className="relative min-h-screen border-b border-line pt-4 md:pt-0">
+<section className="relative min-h-screen pt-4 md:pt-0">
   <div className="mx-auto flex min-h-screen max-w-7xl flex-col px-6 md:px-10 lg:flex-row">
 
     {/* LEFT */}
