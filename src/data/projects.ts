@@ -20,7 +20,7 @@ export type Project = {
   androidLink?: string;
   iosLink?: string;
   figmaLink: string;
-  coverImage: string;
+  coverImage?: string;
   sections: ProjectSection[];
   outcomes: string[];
 };

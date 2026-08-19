@@ -1,6 +1,7 @@
+import type { Project } from "./projects";
 import { projects as baseProjects } from "./projects";
 
-export const projects = [
+export const projects: Project[] = [
   ...baseProjects,
   {
     slug: "baaz",
