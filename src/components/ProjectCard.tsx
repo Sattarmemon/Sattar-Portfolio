@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { ChevronRight } from "lucide-react";
 import { Project } from "@/data/projects";
 
 export default function ProjectCard({ project }: { project: Project }) {
@@ -57,15 +56,9 @@ export default function ProjectCard({ project }: { project: Project }) {
           {project.summary}
         </p>
 
-        <div className="mt-8 flex items-center text-sm text-current opacity-80 transition-colors duration-300 ease-out group-hover:text-gold">
-          <span className="relative inline-flex items-center gap-3">
-            <span className="relative inline-block transition-transform duration-350 ease-out group-hover:translate-x-0.5 after:absolute after:-bottom-1 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-current after:transition-transform after:duration-350 after:ease-out group-hover:after:scale-x-100">
-              View case study
-            </span>
-            <span className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-current/35 bg-white/10 transition-all duration-350 ease-out group-hover:scale-110 group-hover:border-current/60 group-hover:bg-white/20">
-              <ChevronRight className="h-3.5 w-3.5 transition-transform duration-350 ease-out group-hover:translate-x-0.5" />
-            </span>
-          </span>
+        <div className="mt-8 flex items-center gap-2 text-sm text-current opacity-80 transition-colors group-hover:text-gold">
+          <span>View case study</span>
+          <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
         </div>
       </div>
     </Link>
