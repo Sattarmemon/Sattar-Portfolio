@@ -1,16 +1,22 @@
 import Link from "next/link";
 import { Project } from "@/data/projects";
 
-export default function ProjectCard({ project }: { project: Project }) {
+export default function ProjectCard({
+  project,
+  variant = "dark",
+}: {
+  project: Project;
+  variant?: "dark" | "light";
+}) {
   const thumbnail =
     project.coverImage && project.coverImage.length > 0
       ? project.coverImage
       : project.sections && project.sections.length
       ? // prefer the last image in the first section that has images
         (() => {
-          const s = project.sections.find((sec) => (sec as any).images && (sec as any).images.length);
+          const s = project.sections.find((sec) => sec.images && sec.images.length);
           if (!s) return "";
-          const imgs = (s as any).images as string[];
+          const imgs = s.images ?? [];
           return imgs[imgs.length - 1] || imgs[0] || "";
         })()
       : "";
@@ -18,48 +24,38 @@ export default function ProjectCard({ project }: { project: Project }) {
   return (
     <Link
       href={`/work/${project.slug}`}
-      className="group flex flex-col gap-0 border-b border-line/40 py-12 first:pt-0 last:border-none md:flex-row md:items-center md:gap-12 md:py-16"
+      aria-label={`View case study: ${project.title}`}
+      className={`project-card group flex h-full flex-col overflow-hidden rounded-[24px] border text-white transition-[transform,box-shadow,border-color] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-2 ${
+        variant === "light"
+          ? "border-black/[0.06] bg-[#F8F5F0] text-ink shadow-[0_8px_30px_rgba(0,0,0,0.05)] hover:border-black/[0.09] hover:shadow-[0_12px_34px_rgba(0,0,0,0.07)]"
+          : "border-white/[0.06] bg-[#181818] shadow-[0_18px_50px_rgba(0,0,0,0.12)] hover:border-white/[0.12] hover:shadow-[0_28px_70px_rgba(0,0,0,0.24)]"
+      }`}
     >
-      {/* Image — large, left (only when a thumbnail exists) */}
       {thumbnail ? (
-        <div className="relative w-full shrink-0 overflow-hidden rounded-2xl md:w-[46%] lg:w-[48%]">
-          <div className="aspect-[16/10] w-full overflow-hidden bg-white/5">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={thumbnail}
-              alt={project.title}
-              className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-            />
-          </div>
+        <div className={`relative aspect-[16/10] w-full overflow-hidden rounded-[20px] ${variant === "light" ? "bg-[#eee9e1]" : "bg-[#222]"}`}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={thumbnail}
+            alt={project.title}
+            className="h-full w-full object-cover object-center transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03]"
+          />
         </div>
       ) : null}
 
-      {/* Text — right */}
-      <div className="mt-6 flex flex-1 flex-col md:mt-0 md:justify-center">
-        <div className="flex flex-wrap items-center gap-2">
-          <span className="frame-tag text-gold">{project.index}</span>
-          {project.tags.map((tag) => (
-            <span
-              key={tag}
-              className="rounded-full border border-current/20 px-3 py-1 text-xs text-current opacity-70"
-            >
-              {tag}
-            </span>
-          ))}
+      <div className="flex flex-1 items-center justify-between gap-5 px-6 py-6 md:px-8 md:py-7">
+        <div className="min-w-0">
+          <p className={`mb-2 text-[11px] font-medium uppercase tracking-[0.16em] ${variant === "light" ? "text-ink/45" : "text-white/45"}`}>
+            {project.tag}
+          </p>
+          <h3 className={`font-display text-[clamp(1.5rem,2.5vw,2.2rem)] leading-[1.05] transition-colors duration-300 group-hover:text-gold ${variant === "light" ? "text-ink" : "text-white"}`}>
+            {project.title}
+          </h3>
         </div>
 
-        <h3 className="mt-4 font-display text-3xl leading-tight text-inherit transition-colors group-hover:text-gold md:text-4xl lg:text-5xl">
-          {project.title}
-        </h3>
-
-        <p className="mt-4 max-w-xl text-sm leading-relaxed text-current opacity-80">
-          {project.summary}
-        </p>
-
-        <div className="mt-8 flex items-center gap-2 text-sm text-current opacity-80 transition-colors group-hover:text-gold">
-          <span>View case study</span>
-          <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
-        </div>
+        <span className={`project-card-arrow flex h-[52px] w-[52px] shrink-0 items-center justify-center rounded-full border backdrop-blur-sm transition-[transform,background-color,color] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-[3px] group-hover:rotate-45 group-hover:bg-white group-hover:text-ink ${variant === "light" ? "border-ink/15 bg-ink/[0.06] text-ink shadow-[0_8px_20px_rgba(0,0,0,0.06)]" : "border-white/15 bg-white/[0.08] text-white shadow-[0_8px_20px_rgba(0,0,0,0.16)]"}`} aria-hidden="true">
+          <span className="text-xl leading-none">↗</span>
+          <span className="sr-only">Open case study</span>
+        </span>
       </div>
     </Link>
   );

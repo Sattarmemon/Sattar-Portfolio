@@ -38,7 +38,7 @@ export default async function CaseStudyPage({
     <main>
 
       {/* HERO — cream bg to match main site */}
-      <section className="bg-bg px-6 pb-16 pt-12 md:px-10 md:pb-24 md:pt-20">
+      <section className="bg-bg px-6 pb-16 pt-12 md:px-10 md:pb-24 md:pt-28">
         <div className="mx-auto max-w-6xl">
 
           <Link

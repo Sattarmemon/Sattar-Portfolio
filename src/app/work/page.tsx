@@ -10,21 +10,23 @@ export const metadata: Metadata = {
 
 export default function WorkPage() {
   return (
-    <main className="px-6 py-20 md:px-10 md:py-28">
+    <main className="px-6 pb-24 pt-20 md:px-10 md:pb-32 md:pt-28">
       <div className="mx-auto max-w-6xl">
-        <p className="frame-tag text-gold">All work</p>
-        <h1 className="mt-3 max-w-2xl font-display text-4xl text-ink md:text-6xl">
+        <div className="flex items-end justify-between gap-8 border-b border-line pb-10 md:pb-14">
+          <div>
+            <p className="frame-tag text-gold">Selected work</p>
+            <h1 className="mt-4 max-w-2xl font-display text-5xl leading-[0.95] text-ink md:text-7xl">
           Every project, <span className="italic text-accent">start to finish.</span>
-        </h1>
-        <p className="mt-6 max-w-xl text-sm leading-relaxed text-muted">
-          {projects.length} case studies spanning healthcare, B2B SaaS,
-          marketplaces and restaurant tech — each one covering the problem,
-          the process, and the outcome.
-        </p>
+            </h1>
+          </div>
+          <p className="hidden max-w-[190px] pb-1 text-right text-xs leading-relaxed text-muted md:block">
+            {projects.length} products shaped through research, systems, and detail.
+          </p>
+        </div>
 
-        <div className="mt-16 text-ink">
+        <div className="mt-12 grid grid-cols-1 gap-10 text-ink md:grid-cols-2">
           {projects.map((project) => (
-            <ProjectCard key={project.slug} project={project} />
+            <ProjectCard key={project.slug} project={project} variant="light" />
           ))}
         </div>
       </div>

@@ -321,7 +321,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="mt-14 text-bg">
+          <div className="mt-12 grid grid-cols-1 gap-6 text-bg md:grid-cols-2 md:gap-8">
             {projects.map((project) => (
               <ProjectCard key={project.slug} project={project} />
             ))}
