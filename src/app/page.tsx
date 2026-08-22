@@ -316,8 +316,7 @@ export default function Home() {
             </div>
             <p className="max-w-sm text-sm leading-relaxed text-white/50">
               Six projects that show how I think — research, structure,
-              interface, and outcome — across healthcare, SaaS, and
-              on-demand platforms.
+              interface, and outcome.
             </p>
           </div>
 
@@ -489,7 +488,7 @@ export default function Home() {
       <section id="about" className="border-t border-line bg-surface px-6 py-24 md:px-10">
         <div className="mx-auto max-w-6xl">
           <p className="section-label">About</p>
-          <h2 className="mt-1 max-w-2xl font-display text-3xl leading-snug text-ink md:text-5xl">
+          <h2 className="mt-1 max-w-2xl font-display text-3xl leading-snug text-ink md:text-5xl lg:max-w-6xl">
             I design <span className="italic text-gold">clarity</span> into
             complex systems — turning messy requirements into products people
             genuinely enjoy using.

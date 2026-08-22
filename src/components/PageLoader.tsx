@@ -23,8 +23,8 @@ export default function PageLoader() {
       setShowCopy(true);
       setProgress(100);
 
-      const exitTimer = window.setTimeout(() => setExiting(true), 120);
-      const finishTimer = window.setTimeout(() => setLoaded(true), 260);
+          const exitTimer = window.setTimeout(() => setExiting(true), 60);
+          const finishTimer = window.setTimeout(() => setLoaded(true), 130);
 
       return () => {
         window.clearTimeout(exitTimer);
@@ -44,15 +44,15 @@ export default function PageLoader() {
     }
 
     const timeouts: number[] = [];
-    timeouts.push(window.setTimeout(() => setShowBrand(true), 100));
-    timeouts.push(window.setTimeout(() => setShowLineOne(true), 360));
-    timeouts.push(window.setTimeout(() => setShowLineTwo(true), 630));
-    timeouts.push(window.setTimeout(() => setShowCopy(true), 760));
+    timeouts.push(window.setTimeout(() => setShowBrand(true), 50));
+      timeouts.push(window.setTimeout(() => setShowLineOne(true), 180));
+      timeouts.push(window.setTimeout(() => setShowLineTwo(true), 315));
+      timeouts.push(window.setTimeout(() => setShowCopy(true), 380));
 
     const motionStart = performance.now();
-    const minimumDisplay = 1800;
-    const maximumDisplay = 2500;
-    const animationDuration = 1700;
+      const minimumDisplay = 900;
+      const maximumDisplay = 1250;
+      const animationDuration = 850;
     let frameId = 0;
 
     const step = (timestamp: number) => {
@@ -88,8 +88,8 @@ export default function PageLoader() {
       return;
     }
 
-    const exitTimer = window.setTimeout(() => setLoaded(true), 760);
-    return () => window.clearTimeout(exitTimer);
+    const exitTimer = window.setTimeout(() => setLoaded(true), 380);
+      return () => window.clearTimeout(exitTimer);
   }, [exiting]);
 
   if (loaded) {
@@ -108,13 +108,13 @@ export default function PageLoader() {
     >
       <div className="relative flex min-h-screen items-center justify-center px-6 text-center">
         <div
-          className={`mx-auto w-full max-w-[28rem] transition-all duration-[900ms] ease-[cubic-bezier(.16,.8,.35,1)] ${
+          className={`mx-auto w-full max-w-[28rem] transition-all duration-[450ms] ease-[cubic-bezier(.16,.8,.35,1)] ${
             exiting ? "translate-y-[-12%] opacity-0" : "translate-y-0 opacity-100"
           }`}
         >
-          <div className="overflow-hidden">
+            <div className="overflow-hidden">
             <p
-              className="text-[0.74rem] uppercase tracking-[0.32em] text-white/40 transition-all duration-700 ease-[cubic-bezier(.16,.8,.35,1)]"
+              className="text-[0.74rem] uppercase tracking-[0.32em] text-white/40 transition-all duration-[350ms] ease-[cubic-bezier(.16,.8,.35,1)]"
               style={{
                 opacity: showBrand ? 1 : 0,
                 transform: showBrand ? "translateY(0)" : "translateY(10px)",
@@ -127,8 +127,8 @@ export default function PageLoader() {
 
           <div className="mt-4 space-y-1">
             <div className="overflow-hidden">
-              <p
-                className="text-[3.6rem] sm:text-[4.75rem] md:text-[5.75rem] font-display uppercase leading-[0.88] tracking-[-0.04em] transition-all duration-800 ease-[cubic-bezier(.16,.8,.35,1)]"
+                <p
+                  className="text-[3.6rem] sm:text-[4.75rem] md:text-[5.75rem] font-display uppercase leading-[0.88] tracking-[-0.04em] transition-all duration-[400ms] ease-[cubic-bezier(.16,.8,.35,1)]"
                 style={{
                   opacity: showLineOne ? 1 : 0,
                   transform: showLineOne ? "translateY(0)" : "translateY(110%)",
@@ -138,8 +138,8 @@ export default function PageLoader() {
               </p>
             </div>
             <div className="overflow-hidden">
-              <p
-                className="text-[3.6rem] sm:text-[4.75rem] md:text-[5.75rem] font-display uppercase leading-[0.88] tracking-[-0.04em] transition-all duration-800 delay-150 ease-[cubic-bezier(.16,.8,.35,1)]"
+                <p
+                  className="text-[3.6rem] sm:text-[4.75rem] md:text-[5.75rem] font-display uppercase leading-[0.88] tracking-[-0.04em] transition-all duration-[400ms] delay-[75ms] ease-[cubic-bezier(.16,.8,.35,1)]"
                 style={{
                   opacity: showLineTwo ? 1 : 0,
                   transform: showLineTwo ? "translateY(0)" : "translateY(110%)",
@@ -158,7 +158,7 @@ export default function PageLoader() {
 
             <div className="relative mt-3 h-px overflow-hidden rounded-full bg-white/10">
               <div
-                className="absolute inset-y-0 left-0 h-full rounded-full bg-white/20 transition-all duration-300 ease-[cubic-bezier(.16,.8,.35,1)]"
+                className="absolute inset-y-0 left-0 h-full rounded-full bg-white/20 transition-all duration-[150ms] ease-[cubic-bezier(.16,.8,.35,1)]"
                 style={{ width: `${progress}%` }}
               />
               <div
@@ -169,7 +169,7 @@ export default function PageLoader() {
 
             <div className="mt-4 overflow-hidden text-sm uppercase tracking-[0.26em] text-white/40">
               <p
-                className="inline-block transition-all duration-700 ease-[cubic-bezier(.16,.8,.35,1)]"
+                  className="inline-block transition-all duration-[350ms] ease-[cubic-bezier(.16,.8,.35,1)]"
                 style={{
                   opacity: showCopy ? 1 : 0,
                   transform: showCopy ? "translateY(0)" : "translateY(8px)",
