@@ -40,7 +40,8 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
+  scroll-padding-top: 6rem;
 }
 
 body {
@@ -48,6 +49,24 @@ body {
   color: var(--ink);
   font-family: var(--font-sans);
   overflow-x: hidden;
+}
+
+.motion-ready [data-motion="hero-line"] {
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+.motion-ready [data-motion="mask"],
+.motion-ready [data-motion="detail-image"] {
+  will-change: clip-path, transform;
+}
+
+[data-motion-item] {
+  will-change: transform, opacity;
+}
+
+.timeline-line {
+  transform-origin: top;
 }
 
 

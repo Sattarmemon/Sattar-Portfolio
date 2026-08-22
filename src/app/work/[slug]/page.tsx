@@ -35,7 +35,7 @@ export default async function CaseStudyPage({
   const prev = projects[(currentIdx - 1 + projects.length) % projects.length];
 
   return (
-    <main>
+    <main data-motion="stagger">
 
       {/* HERO — cream bg to match main site */}
       <section className="bg-bg px-6 pb-16 pt-12 md:px-10 md:pb-24 md:pt-28">
@@ -48,7 +48,7 @@ export default async function CaseStudyPage({
             ← All projects
           </Link>
 
-          <div className="mt-8 flex flex-wrap gap-2">
+          <div className="mt-8 flex flex-wrap gap-2" data-motion-item>
             {project.tags.map((tag) => (
               <span
                 key={tag}
@@ -59,11 +59,11 @@ export default async function CaseStudyPage({
             ))}
           </div>
 
-          <h1 className="mt-5 font-display text-4xl leading-tight text-ink md:text-6xl lg:text-7xl">
+          <h1 className="mt-5 font-display text-4xl leading-tight text-ink md:text-6xl lg:text-7xl" data-motion-item>
             {project.title}
           </h1>
 
-          <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted md:text-lg">
+          <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted md:text-lg" data-motion-item>
             {project.summary}
           </p>
 
@@ -135,8 +135,8 @@ export default async function CaseStudyPage({
       {/* COVER IMAGE */}
       {project.coverImage && (
         <div className="w-full bg-bg px-6 pb-8 pt-2 md:px-10 md:pb-10">
-          <div className="mx-auto max-w-6xl">
-            <div className="mx-auto w-full max-w-5xl overflow-hidden rounded-[12px]">
+            <div className="mx-auto max-w-6xl">
+            <div data-motion="detail-image" className="mx-auto w-full max-w-5xl overflow-hidden rounded-[12px]">
               {project.slug === "agentflow" ? (
                 /* eslint-disable-next-line @next/next/no-img-element */
                 <img
@@ -163,9 +163,9 @@ export default async function CaseStudyPage({
       <section className="bg-bg px-6 py-12 md:px-10 md:py-16">
         <div className="mx-auto max-w-4xl">
 
-          <div className="space-y-20">
+          <div className="space-y-20" data-motion="stagger">
             {project.sections.map((section, i) => (
-              <div key={i}>
+              <div key={i} data-motion-item>
                 <div className="flex items-center gap-3">
                   <span className="frame-tag text-gold">{String(i + 1).padStart(2, "0")}</span>
                   <span className="frame-tag text-muted-2">{section.eyebrow}</span>
@@ -207,7 +207,7 @@ export default async function CaseStudyPage({
           </div>
 
           {/* Outcomes */}
-          <div className="mt-24 border-t border-line pt-12">
+          <div className="mt-24 border-t border-line pt-12" data-motion-item>
             <p className="section-label">Outcomes</p>
             <div className="mt-8 grid grid-cols-2 gap-px bg-line md:grid-cols-4">
               {project.outcomes.map((o) => (

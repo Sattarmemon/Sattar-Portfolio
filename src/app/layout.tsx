@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PageLoader from "@/components/PageLoader";
+import MotionDirector from "@/components/MotionDirector";
 
 const playfair = Playfair_Display({
   variable: "--font-fraunces",
@@ -62,6 +63,7 @@ export default function RootLayout({
       >
         <Header />
         <PageLoader />
+        <MotionDirector />
         {children}
         <Footer />
       </body>

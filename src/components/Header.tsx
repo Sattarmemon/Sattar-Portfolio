@@ -14,11 +14,35 @@ const navItems = [
 export default function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("work");
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
+    const onScroll = () => {
+      const currentY = window.scrollY;
+      setScrolled(currentY > 8);
+    };
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const sections = navItems
+      .map((item) => document.querySelector<HTMLElement>(item.href))
+      .filter((section): section is HTMLElement => section !== null);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleSection = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+
+        if (visibleSection) setActiveSection(visibleSection.target.id);
+      },
+      { rootMargin: "-96px 0px -55% 0px", threshold: 0 },
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
   }, []);
 
   useEffect(() => {
@@ -43,6 +67,21 @@ export default function Header() {
 
   const closeMenu = () => setOpen(false);
 
+  const handleSectionNavigation = (event: MouseEvent<HTMLAnchorElement>, href: string) => {
+    const target = document.querySelector<HTMLElement>(href);
+    if (!target) return;
+
+    event.preventDefault();
+    const header = document.querySelector<HTMLElement>("header");
+    const offset = (header?.offsetHeight ?? 0) + 16;
+    const top = target.getBoundingClientRect().top + window.scrollY - offset;
+
+    window.history.pushState(null, "", href);
+    window.scrollTo({ top, behavior: "smooth" });
+    setActiveSection(href.slice(1));
+    closeMenu();
+  };
+
   const handleCvDownload = (event: MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
 
@@ -59,7 +98,7 @@ export default function Header() {
 
   return (
     <>
-    <header className="sticky top-0 z-50 w-full px-4 pt-4 transition-all duration-300 md:px-8">
+    <header className="fixed top-0 z-50 w-full px-4 pt-4 md:px-8">
       <div
         className={`mx-auto flex w-full nav-strip items-center justify-between gap-2 rounded-full border border-ink/10 bg-[#faf6ee] px-5 py-2.5 h-[64px] md:px-2.5 md:py-[0.4375rem] md:h-auto shadow-[0_8px_30px_rgba(26,26,24,0.08)] transition-all duration-300 ${
           scrolled ? "backdrop-blur-2xl bg-[#faf6ee]/90" : ""
@@ -75,7 +114,7 @@ export default function Header() {
         </Link>
         <nav className="hidden items-center gap-1 md:flex">
           {navItems.map((item) => (
-            <Link key={item.href} href={item.href} className="rounded-full px-2.5 py-1 text-sm text-muted transition-colors duration-200 hover:bg-gold/10 hover:text-gold">
+            <Link key={item.href} href={item.href} onClick={(event) => handleSectionNavigation(event, item.href)} className={`rounded-full px-2.5 py-1 text-sm transition-colors duration-200 hover:bg-gold/10 hover:text-gold ${activeSection === item.href.slice(1) ? "bg-gold/10 text-gold" : "text-muted"}`}>
               {item.label}
             </Link>
           ))}
@@ -138,8 +177,8 @@ export default function Header() {
                     >
                       <Link
                         href={item.href}
-                        onClick={closeMenu}
-                        className="flex min-h-[56px] items-center gap-4 border-b border-black/10 py-4 transition-colors duration-200 hover:text-[#E56A2E]"
+                        onClick={(event) => handleSectionNavigation(event, item.href)}
+                        className={`flex min-h-[56px] items-center gap-4 border-b border-black/10 py-4 transition-colors duration-200 hover:text-[#E56A2E] ${activeSection === item.href.slice(1) ? "text-[#E56A2E]" : ""}`}
                       >
                         <span className="text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-[#E56A2E]">
                           {`0${index + 1}`}
