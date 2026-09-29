@@ -25,7 +25,6 @@ export default function ProjectCard({
     <Link
       href={`/work/${project.slug}`}
       aria-label={`View case study: ${project.title}`}
-      data-motion-item
       className={`project-card group flex h-full flex-col overflow-hidden rounded-[24px] border text-white transition-[transform,box-shadow,border-color] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-2 ${
         variant === "light"
           ? "border-black/[0.06] bg-[#F8F5F0] text-ink shadow-[0_8px_30px_rgba(0,0,0,0.05)] hover:border-black/[0.09] hover:shadow-[0_12px_34px_rgba(0,0,0,0.07)]"
@@ -33,12 +32,12 @@ export default function ProjectCard({
       }`}
     >
       {thumbnail ? (
-        <div data-motion="mask" className={`relative aspect-[16/10] w-full overflow-hidden rounded-[20px] ${variant === "light" ? "bg-[#eee9e1]" : "bg-[#222]"}`}>
+        <div className={`relative aspect-[16/10] w-full overflow-hidden rounded-[20px] ${variant === "light" ? "bg-[#eee9e1]" : "bg-[#222]"}`}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={thumbnail}
             alt={project.title}
-            className="h-full w-full object-cover object-center transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.06]"
+            className="h-full w-full object-cover object-center transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03]"
           />
         </div>
       ) : null}

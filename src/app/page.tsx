@@ -236,37 +236,37 @@ export default function Home() {
     <main>
 
 {/* HERO */}
-<section className="relative min-h-screen pt-4 md:pt-0" data-motion="stagger">
+<section className="relative min-h-screen pt-4 md:pt-0">
   <div className="mx-auto flex min-h-screen max-w-7xl flex-col px-6 md:px-10 lg:flex-row">
 
     {/* LEFT */}
     <div className="flex w-full items-center lg:w-1/2">
       <div className="max-w-xl">
 
-        <p className="section-label" data-motion-item>
+        <p className="section-label">
           UI/UX &amp; Product Designer
         </p>
 
         <h1 className="mt-3 font-display text-[clamp(3rem,6vw,5.8rem)] leading-[0.88] tracking-[-0.03em] text-ink">
-          <span className="block overflow-hidden font-archivo uppercase text-[clamp(2.4rem,4.8vw,5.2rem)]" data-motion="hero-line">
+          <span className="block font-archivo uppercase text-[clamp(2.4rem,4.8vw,5.2rem)]">
             Every Design Start with
           </span>
-          <span className="block overflow-hidden font-archivo uppercase text-[clamp(2.4rem,4.8vw,5.2rem)]" data-motion="hero-line">
+          <span className="block font-archivo uppercase text-[clamp(2.4rem,4.8vw,5.2rem)]">
             
  </span>
-          <span className="block overflow-hidden italic text-gold" data-motion="hero-line">
+          <span className="block italic text-gold">
             Empathize
           </span>
         </h1>
 
-        <p className="mt-6 max-w-lg text-muted leading-8" data-motion="hero-copy">
+        <p className="mt-6 max-w-lg text-muted leading-8">
           I'm Sattar Memon, a UI/UX Designer passionate about
           transforming complex problems into intuitive,
           user-centered digital experiences that create real business impact.
         </p>
         
 
-        <div className="mt-8 flex gap-4" data-motion="hero-copy">
+        <div className="mt-8 flex gap-4">
           <Link
             href="/work"
             className="inline-flex items-center gap-1.5 rounded-full bg-ink px-7 py-3 text-bg transition duration-200 hover:-translate-y-0.5 hover:bg-gold hover:text-bg"
@@ -288,7 +288,7 @@ export default function Home() {
     {/* RIGHT */}
     <div className="mt-10 flex w-full items-end justify-center lg:mt-0 lg:w-1/2">
 
-      <div className="relative flex w-full max-w-[520px] items-end justify-center overflow-visible" data-motion="hero-visual">
+      <div className="relative flex w-full max-w-[520px] items-end justify-center overflow-visible">
 
         <img
           src="/Sattupseditimg2.png"
@@ -305,22 +305,22 @@ export default function Home() {
 </section>
 
       {/* WORK */}
-      <section id="work" className="border-t border-white/10 bg-dark px-6 py-24 md:px-10" data-motion="stagger">
+      <section id="work" className="border-t border-white/10 bg-dark px-6 py-24 md:px-10">
         <div className="mx-auto max-w-6xl">
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>
-              <p className="section-label" data-motion-item>Selected work</p>
-              <h2 className="mt-3 font-display text-4xl text-bg md:text-5xl" data-motion-item>
+              <p className="section-label">Selected work</p>
+              <h2 className="mt-3 font-display text-4xl text-bg md:text-5xl">
                 Case <span className="italic">studies</span>
               </h2>
             </div>
-            <p className="max-w-sm text-sm leading-relaxed text-white/50" data-motion-item>
+            <p className="max-w-sm text-sm leading-relaxed text-white/50">
               Six projects that show how I think — research, structure,
               interface, and outcome.
             </p>
           </div>
 
-          <div className="mt-12 grid grid-cols-1 gap-6 text-bg md:grid-cols-2 md:gap-8" data-motion="stagger">
+          <div className="mt-12 grid grid-cols-1 gap-6 text-bg md:grid-cols-2 md:gap-8">
             {projects.map((project) => (
               <ProjectCard key={project.slug} project={project} />
             ))}
@@ -338,11 +338,11 @@ export default function Home() {
       </section>
 
       {/* CAPABILITIES */}
-      <section id="capabilities" className="border-t border-line bg-[#e8e2d8] px-6 pt-20 pb-0 md:px-10" data-motion="stagger">
+      <section id="capabilities" className="border-t border-line bg-[#e8e2d8] px-6 pt-20 pb-0 md:px-10">
         {/* Section header */}
         <div className="mx-auto max-w-3xl pb-10">
           <p className="section-label">Capabilities</p>
-          <h2 className="mt-3 font-display text-4xl text-ink md:text-5xl" data-motion-item>
+          <h2 className="mt-3 font-display text-4xl text-ink md:text-5xl">
             What I <span className="italic text-gold">bring</span> to a product team
           </h2>
         </div>
@@ -352,7 +352,6 @@ export default function Home() {
           {capabilities.map((cap, index) => (
             <CapabilityCard
               key={cap.index}
-              data-motion-item
               cap={cap}
               index={index}
               total={capabilities.length}
@@ -363,16 +362,16 @@ export default function Home() {
       </section>
 
       {/* JOURNEY */}
-      <section id="journey" className="border-t border-line bg-dark px-6 py-24 md:px-10" data-motion="timeline">
+      <section id="journey" className="border-t border-line bg-dark px-6 py-24 md:px-10">
         <div className="mx-auto max-w-6xl">
           <p className="section-label text-gold/80">Journey</p>
           <h2 className="mt-3 font-display text-4xl text-bg md:text-5xl">
             4 years, <span className="italic">four teams</span>
           </h2>
 
-          <div className="relative mt-14 divide-y divide-white/10 border-t border-white/10">
+          <div className="mt-14 divide-y divide-white/10 border-t border-white/10">
             {journey.map((j) => (
-              <div key={j.org} className="grid gap-2 py-8 pl-5 md:grid-cols-[220px_1fr] md:gap-10" data-motion-item>
+              <div key={j.org} className="grid gap-2 py-8 md:grid-cols-[220px_1fr] md:gap-10">
                 <span className="frame-tag text-white/40">{j.period}</span>
                 <div>
                   <h3 className="font-display text-xl text-bg md:text-2xl">{j.role}</h3>
@@ -429,7 +428,7 @@ export default function Home() {
       </section>
 
       {/* EDUCATION */}
-      <section className="border-t border-line bg-bg px-6 py-20 md:px-10" data-motion="stagger">
+      <section className="border-t border-line bg-bg px-6 py-20 md:px-10">
         <div className="mx-auto max-w-6xl">
           <p className="section-label">
             Education &amp; Certification
@@ -439,11 +438,11 @@ export default function Home() {
           </h2>
 
           <div className="mt-12 grid gap-5 sm:grid-cols-2 md:grid-cols-3">
-            {education.map((e) => (
+            {education.map((e, i) => (
               <div
                 key={e.title}
-                className="group flex flex-col rounded-lg bg-white p-7 transition-transform hover:-translate-y-1"
-                data-motion-item
+                className="group flex flex-col rounded-lg bg-white p-7 opacity-0 transition-transform hover:-translate-y-1 animate-[reveal-up_0.6s_ease_forwards]"
+                style={{ animationDelay: `${i * 120}ms` }}
               >
                 {/* Top row: date + icon */}
                 <div className="flex items-start justify-between">
@@ -486,23 +485,23 @@ export default function Home() {
       </section>
 
       {/* ABOUT */}
-      <section id="about" className="border-t border-line bg-surface px-6 py-24 md:px-10" data-motion="stagger">
+      <section id="about" className="border-t border-line bg-surface px-6 py-24 md:px-10">
         <div className="mx-auto max-w-6xl">
           <p className="section-label">About</p>
-          <h2 className="mt-1 max-w-2xl font-display text-3xl leading-snug text-ink md:text-5xl lg:max-w-6xl" data-motion-item>
+          <h2 className="mt-1 max-w-2xl font-display text-3xl leading-snug text-ink md:text-5xl lg:max-w-6xl">
             I design <span className="italic text-gold">clarity</span> into
             complex systems — turning messy requirements into products people
             genuinely enjoy using.
           </h2>
 
           <div className="mt-14 grid gap-10 md:grid-cols-[1fr_1fr]">
-            <div data-motion-item>
+            <div>
               <div className="relative mx-auto w-full max-w-sm">
                 <div className="pointer-events-none absolute -left-1.5 -top-1.5 h-3 w-3 border-l border-t border-accent/60" />
                 <div className="pointer-events-none absolute -right-1.5 -top-1.5 h-3 w-3 border-r border-t border-accent/60" />
                 <div className="pointer-events-none absolute -bottom-1.5 -left-1.5 h-3 w-3 border-b border-l border-accent/60" />
                 <div className="pointer-events-none absolute -bottom-1.5 -right-1.5 h-3 w-3 border-b border-r border-accent/60" />
-                <div className="relative overflow-visible border border-line bg-bg">
+                <div className="relative overflow-hidden md:overflow-visible border border-line bg-bg">
                   <style>{badgeAnimationStyle}</style>
                   <Image
                     src={SattuImage}
@@ -525,13 +524,13 @@ export default function Home() {
             </div>
 
             <div className="space-y-8">
-              <p className="text-sm leading-relaxed text-muted" data-motion-item>
+              <p className="text-sm leading-relaxed text-muted">
                 Outside of Figma files and prototypes, I stay curious about
                 what makes digital products feel effortless — studying
                 design systems, exploring AI-assisted design workflows, and
                 sharpening my print and branding skills alongside product UI.
               </p>
-              <p className="text-sm leading-relaxed text-muted" data-motion-item>
+              <p className="text-sm leading-relaxed text-muted">
                 I believe in intentional design — every screen, every flow,
                 every interaction should have a reason for existing and
                 should make someone&apos;s task a little easier.
