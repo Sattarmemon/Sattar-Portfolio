@@ -5,21 +5,10 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import type { CSSProperties } from "react";
 import { useEffect, useRef, useState } from "react";
-import { showcaseGraphics, type ShowcaseGraphicCategory } from "@/data/graphics";
+import { showcaseGraphics } from "@/data/graphics";
 import styles from "./GraphicsShowcase.module.css";
 
-const filters = ["All", "Branding", "Social Media", "Posters", "Print"] as const;
-type Filter = (typeof filters)[number];
-
-const categoryFilters: Record<Exclude<Filter, "All">, ShowcaseGraphicCategory> = {
-  Branding: "Branding",
-  "Social Media": "Social Media",
-  Posters: "Posters",
-  Print: "Print",
-};
-
 export default function GraphicsShowcase() {
-  const [activeFilter, setActiveFilter] = useState<Filter>("All");
   const [failedGraphicIds, setFailedGraphicIds] = useState<Set<string>>(() => new Set());
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [selectedSlide, setSelectedSlide] = useState(0);
@@ -28,18 +17,14 @@ export default function GraphicsShowcase() {
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const previouslyFocusedRef = useRef<HTMLElement | null>(null);
   const availableGraphics = showcaseGraphics.filter((graphic) => !failedGraphicIds.has(graphic.id));
-  const availableCategories = new Set(availableGraphics.map((graphic) => graphic.category));
-  const visibleGraphics =
-    activeFilter === "All"
-      ? availableGraphics
-      : availableGraphics.filter((graphic) => graphic.category === categoryFilters[activeFilter]);
-  const useBentoLayout = activeFilter === "All" && visibleGraphics.length === 7;
-  const selectedGraphic = selectedIndex === null ? null : showcaseGraphics[selectedIndex];
+  const visibleGraphics = availableGraphics;
+  const useBentoLayout = visibleGraphics.length === 7;
+  const selectedGraphic = selectedIndex === null ? null : availableGraphics[selectedIndex];
   const selectedImages = selectedGraphic?.galleryImages ?? [selectedGraphic?.image ?? ""];
 
   const openLightbox = (graphicId: string) => {
     previouslyFocusedRef.current = document.activeElement as HTMLElement | null;
-    setSelectedIndex(showcaseGraphics.findIndex((graphic) => graphic.id === graphicId));
+    setSelectedIndex(availableGraphics.findIndex((graphic) => graphic.id === graphicId));
     setSelectedSlide(0);
   };
 
@@ -53,7 +38,7 @@ export default function GraphicsShowcase() {
     setSelectedIndex((currentIndex) =>
       currentIndex === null
         ? null
-        : (currentIndex + offset + showcaseGraphics.length) % showcaseGraphics.length,
+        : (currentIndex + offset + availableGraphics.length) % availableGraphics.length,
     );
     setSelectedSlide(0);
   };
@@ -147,30 +132,6 @@ export default function GraphicsShowcase() {
           </p>
         </div>
 
-        <div className="mt-8" role="group" aria-label="Filter graphic design work">
-          <div className={styles.filters}>
-            {filters.filter((filter) => filter === "All" || availableCategories.has(categoryFilters[filter])).map((filter) => (
-              <button
-                key={filter}
-                type="button"
-                className={styles.filter}
-                aria-pressed={activeFilter === filter}
-                onClick={() => setActiveFilter(filter)}
-              >
-                {activeFilter === filter ? (
-                  <motion.span
-                    className={styles.activeFilter}
-                    layoutId="graphics-active-filter"
-                    transition={prefersReducedMotion ? { duration: 0 } : { type: "spring", stiffness: 420, damping: 34 }}
-                    aria-hidden="true"
-                  />
-                ) : null}
-                {filter}
-              </button>
-            ))}
-          </div>
-        </div>
-
         <motion.div
           className={`${styles.grid} mt-8`}
           variants={revealVariants}
@@ -218,11 +179,6 @@ export default function GraphicsShowcase() {
                         if (failedIds.has(graphic.id)) return failedIds;
                         return new Set(failedIds).add(graphic.id);
                       });
-                      setActiveFilter((currentFilter) =>
-                        currentFilter !== "All" && categoryFilters[currentFilter] === graphic.category
-                          ? "All"
-                          : currentFilter,
-                      );
                     }}
                   />
                   <span className={styles.tileOverlay}>
@@ -235,15 +191,6 @@ export default function GraphicsShowcase() {
               );
             })}
           </AnimatePresence>
-          {activeFilter === "All" ? (
-            <motion.div
-              className={`${styles.tile} ${styles.tilePlaceholder}`}
-              style={{ "--image-ratio": "1402 / 1122" } as CSSProperties}
-              variants={tileVariants}
-              layout
-              aria-hidden="true"
-            />
-          ) : null}
         </motion.div>
 
       </div>

@@ -5,22 +5,10 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import type { CSSProperties } from "react";
 import { useEffect, useRef, useState } from "react";
-import type { ShowcaseGraphic, ShowcaseGraphicCategory } from "@/data/graphics";
+import type { ShowcaseGraphic } from "@/data/graphics";
 import styles from "./GraphicsShowcase.module.css";
 
-const filters = ["All", "Branding", "Social Media", "Slide Carousel", "Posters", "Print"] as const;
-type Filter = (typeof filters)[number];
-
-const categoryFilters: Record<Exclude<Filter, "All">, ShowcaseGraphicCategory> = {
-  Branding: "Branding",
-  "Social Media": "Social Media",
-  "Slide Carousel": "Slide Carousel",
-  Posters: "Posters",
-  Print: "Print",
-};
-
 export default function GraphicsShowcaseClient({ graphics }: { graphics: ShowcaseGraphic[] }) {
-  const [activeFilter, setActiveFilter] = useState<Filter>("All");
   const [failedBlockIds, setFailedBlockIds] = useState<Set<number>>(() => new Set());
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [selectedSlide, setSelectedSlide] = useState(0);
@@ -29,12 +17,8 @@ export default function GraphicsShowcaseClient({ graphics }: { graphics: Showcas
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const previouslyFocusedRef = useRef<HTMLElement | null>(null);
   const availableGraphics = graphics.filter((graphic) => !failedBlockIds.has(graphic.block));
-  const availableCategories = new Set(availableGraphics.map((graphic) => graphic.category));
-  const visibleGraphics =
-    activeFilter === "All"
-      ? availableGraphics
-      : availableGraphics.filter((graphic) => graphic.category === categoryFilters[activeFilter]);
-  const useBlockLayout = activeFilter === "All";
+  const visibleGraphics = availableGraphics;
+  const useBlockLayout = true;
   const selectedGraphic = selectedIndex === null ? null : availableGraphics[selectedIndex];
   const selectedImages = selectedGraphic?.galleryImages ?? [selectedGraphic?.image ?? ""];
 
@@ -149,30 +133,6 @@ export default function GraphicsShowcaseClient({ graphics }: { graphics: Showcas
           </p>
         </div>
 
-        <div className="mt-8" role="group" aria-label="Filter graphic design work">
-          <div className={styles.filters}>
-            {filters.filter((filter) => filter === "All" || availableCategories.has(categoryFilters[filter])).map((filter) => (
-              <button
-                key={filter}
-                type="button"
-                className={styles.filter}
-                aria-pressed={activeFilter === filter}
-                onClick={() => setActiveFilter(filter)}
-              >
-                {activeFilter === filter ? (
-                  <motion.span
-                    className={styles.activeFilter}
-                    layoutId="graphics-active-filter"
-                    transition={prefersReducedMotion ? { duration: 0 } : { type: "spring", stiffness: 420, damping: 34 }}
-                    aria-hidden="true"
-                  />
-                ) : null}
-                {filter}
-              </button>
-            ))}
-          </div>
-        </div>
-
         <motion.div
           className={`${styles.grid} mt-8`}
           variants={revealVariants}
@@ -220,11 +180,6 @@ export default function GraphicsShowcaseClient({ graphics }: { graphics: Showcas
                         if (failedIds.has(graphic.block)) return failedIds;
                         return new Set(failedIds).add(graphic.block);
                       });
-                      setActiveFilter((currentFilter) =>
-                        currentFilter !== "All" && categoryFilters[currentFilter] === graphic.category
-                          ? "All"
-                          : currentFilter,
-                      );
                     }}
                   />
                   <span className={styles.tileOverlay}>
