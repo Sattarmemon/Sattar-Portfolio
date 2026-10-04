@@ -24,11 +24,15 @@ export default function GraphicsShowcase() {
 
   const openLightbox = (graphicId: string) => {
     previouslyFocusedRef.current = document.activeElement as HTMLElement | null;
-    setSelectedIndex(availableGraphics.findIndex((graphic) => graphic.id === graphicId));
+    const nextIndex = availableGraphics.findIndex((graphic) => graphic.id === graphicId);
+    if (nextIndex === -1) return;
+    setSelectedIndex(nextIndex);
     setSelectedSlide(0);
   };
 
   const showRelativeGraphic = (offset: number) => {
+    if (!availableGraphics.length) return;
+
     if (selectedImages.length > 1) {
       setSelectedSlide((currentSlide) =>
         (currentSlide + offset + selectedImages.length) % selectedImages.length,
