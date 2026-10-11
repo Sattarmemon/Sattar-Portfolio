@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import CaseStudyViewer from "@/components/CaseStudyViewer";
+import { hospitalManagementSlides } from "@/data/hospitalManagementSlides";
 import { projects, getProjectBySlug } from "@/data/projects_work";
 
 export function generateStaticParams() {
@@ -123,7 +125,14 @@ export default async function CaseStudyPage({
                     Figma file ↗
                   </a>
                 )}
-                {!project.androidLink && !project.iosLink && !project.liveLink && !project.figmaLink ? (
+                {project.slug === "hospital-management-system" ? (
+                  <CaseStudyViewer
+                    slides={hospitalManagementSlides}
+                    buttonLabel="View Full Case Study"
+                    title="HMS Case Study"
+                  />
+                ) : null}
+                {!project.androidLink && !project.iosLink && !project.liveLink && !project.figmaLink && project.slug !== "hospital-management-system" ? (
                   <span className="text-muted-2">Coming soon</span>
                 ) : null}
               </div>
@@ -160,7 +169,7 @@ export default async function CaseStudyPage({
       )}
 
       {/* CASE STUDY CONTENT — light bg */}
-      <section className="bg-bg px-6 py-12 md:px-10 md:py-16">
+      <section id="case-study" className="bg-bg px-6 py-12 md:px-10 md:py-16">
         <div className="mx-auto max-w-4xl">
 
           <div className="space-y-20">

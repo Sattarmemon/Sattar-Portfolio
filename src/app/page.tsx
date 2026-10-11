@@ -4,7 +4,17 @@ import ProjectCard from "@/components/ProjectCard";
 import CapabilitiesStack from "@/components/CapabilitiesStack";
 import GraphicsShowcase from "@/components/GraphicsShowcaseServer";
 import { projects } from "@/data/projects";
+import { getProjectBySlug as getWorkProjectBySlug } from "@/data/projects_work";
 import SattuImage from "../../Sattu-2.png";
+
+const hospitalManagementProject = getWorkProjectBySlug("hospital-management-system");
+if (!hospitalManagementProject) {
+  throw new Error("Hospital Management System project is missing from the work data.");
+}
+
+const featuredProjects = projects.map((project) =>
+  project.slug === "invoice-maker-app" ? hospitalManagementProject : project,
+);
 
 const badgeAnimationStyle = `
   @keyframes badgeFloat {
@@ -220,7 +230,7 @@ export default function Home() {
           </div>
 
           <div className="mt-12 grid grid-cols-1 gap-6 text-bg md:grid-cols-2 md:gap-8">
-            {projects.map((project) => (
+            {featuredProjects.map((project) => (
               <ProjectCard key={project.slug} project={project} />
             ))}
           </div>
