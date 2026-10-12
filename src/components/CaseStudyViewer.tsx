@@ -28,6 +28,14 @@ export default function CaseStudyViewer({
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const firstSlide = slides[0];
+    if (!firstSlide) return;
+
+    const image = new window.Image();
+    image.src = firstSlide.src;
+  }, [slides]);
+
+  useEffect(() => {
     if (!isOpen) return;
 
     const previousOverflow = document.body.style.overflow;
