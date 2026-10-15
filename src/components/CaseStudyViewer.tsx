@@ -28,11 +28,13 @@ export default function CaseStudyViewer({
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const firstSlide = slides[0];
-    if (!firstSlide) return;
+    if (!slides.length) return;
 
-    const image = new window.Image();
-    image.src = firstSlide.src;
+    slides.forEach((slide) => {
+      const image = new window.Image();
+      image.src = slide.src;
+      image.decoding = "async";
+    });
   }, [slides]);
 
   useEffect(() => {

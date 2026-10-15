@@ -36,7 +36,7 @@ export default function ProjectCard({
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={thumbnail}
-            alt={project.title}
+            alt={project.coverImageAlt ?? project.title}
             className="h-full w-full object-cover object-center transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03]"
           />
         </div>

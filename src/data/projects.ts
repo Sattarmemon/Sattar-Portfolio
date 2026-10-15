@@ -4,6 +4,7 @@ export type ProjectSection = {
   body: string;
   bullets?: string[];
   images?: string[];
+  imageAlts?: string[];
 };
 
 export type Project = {
@@ -21,6 +22,7 @@ export type Project = {
   iosLink?: string;
   figmaLink: string;
   coverImage?: string;
+  coverImageAlt?: string;
   sections: ProjectSection[];
   outcomes: string[];
 };
@@ -319,6 +321,82 @@ export const projects: Project[] = [
       "Clear before/after comparison",
       "Fast monochrome correction",
       "Simple, approachable edit path",
+    ],
+  },
+  {
+    slug: "gvoice",
+    index: "07",
+    title: "GVoice",
+    tag: "Restaurant POS / SaaS",
+    tags: [
+      "Restaurant POS / SaaS",
+      "Website / Web App",
+      "Food & Hospitality (Restaurant Tech)",
+    ],
+    summary:
+      "A voice-enabled restaurant management platform that helps staff take orders, manage tables, kitchen flow and billing faster.",
+    role: "UI/UX Designer",
+    category: "Restaurant POS / SaaS",
+    tools: "Figma, Illustrator",
+    liveLink: "",
+    figmaLink: "",
+    coverImage: "/projects/gvoice/gvoice-landing.png",
+    coverImageAlt: "GVoice landing page",
+    sections: [
+      {
+        eyebrow: "Project Overview",
+        heading: "Overview",
+        body:
+          "GVoice is a restaurant software platform that brings POS, table management, order management, kitchen flow and billing into one clean interface, with voice-assisted ordering to reduce manual work for staff.",
+        images: [
+          "/projects/gvoice/gvoice-02.png",
+          "/projects/gvoice/gvoice-03.png",
+        ],
+        imageAlts: ["GVoice screen 2", "GVoice screen 3"],
+      },
+      {
+        eyebrow: "Problem & Context",
+        heading: "Problem",
+        body:
+          "Restaurant staff juggle multiple tools during rush hours. Manual order entry causes mistakes and delays between waiter, kitchen and billing, and complex POS software needs long training.",
+      },
+      {
+        eyebrow: "Product Goals",
+        heading: "Goals",
+        body:
+          "The design focused on faster order taking, fewer errors, clear real-time order status, a simple UI new staff can learn quickly, and a scalable system for multiple outlets.",
+      },
+      {
+        eyebrow: "Target Users",
+        heading: "Target users",
+        body:
+          "GVoice is designed for restaurant owners and admins, managers, cashiers, waiters and kitchen staff, supporting each role through the order lifecycle.",
+        bullets: [
+          "Restaurant owner / admin",
+          "Manager",
+          "Cashier",
+          "Waiter",
+          "Kitchen staff",
+        ],
+      },
+      {
+        eyebrow: "Design Approach",
+        heading: "Design approach",
+        body:
+          "The interface uses clear hierarchy for fast scanning in busy environments, high-contrast status colors, minimal clicks to place an order, and a consistent component system.",
+      },
+      {
+        eyebrow: "Outcome & Impact",
+        heading: "Outcome",
+        body:
+          "The design supports faster order flow, reduced order mistakes and shorter staff onboarding, with a scalable design system ready for developer handoff.",
+      },
+    ],
+    outcomes: [
+      "Faster order flow",
+      "Reduced order mistakes",
+      "Shorter staff onboarding",
+      "Scalable design system ready for developer handoff",
     ],
   },
 ];

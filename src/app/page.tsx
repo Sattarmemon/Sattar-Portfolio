@@ -224,7 +224,7 @@ export default function Home() {
               </h2>
             </div>
             <p className="max-w-sm text-sm leading-relaxed text-white/50">
-              Six projects that show how I think — research, structure,
+              Seven projects that show how I think — research, structure,
               interface, and outcome.
             </p>
           </div>

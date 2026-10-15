@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import CaseStudyViewer from "@/components/CaseStudyViewer";
+import { baazSlides } from "@/data/baazSlides";
 import { hospitalManagementSlides } from "@/data/hospitalManagementSlides";
 import { projects, getProjectBySlug } from "@/data/projects_work";
 
@@ -17,9 +18,24 @@ export async function generateMetadata({
   const { slug } = await params;
   const project = getProjectBySlug(slug);
   if (!project) return {};
+  const title = `${project.title} — Sattar Memon`;
   return {
-    title: `${project.title} — Sattar Memon`,
+    title,
     description: project.summary,
+    ...(project.slug === "gvoice" && project.coverImage
+      ? {
+          openGraph: {
+            title,
+            description: project.summary,
+            images: [
+              {
+                url: `https://sattarux.vercel.app${project.coverImage}`,
+                alt: project.coverImageAlt ?? project.title,
+              },
+            ],
+          },
+        }
+      : {}),
   };
 }
 
@@ -131,8 +147,14 @@ export default async function CaseStudyPage({
                     buttonLabel="View Full Case Study"
                     title="HMS Case Study"
                   />
+                ) : project.slug === "baaz" ? (
+                  <CaseStudyViewer
+                    slides={baazSlides}
+                    buttonLabel="View Full Case Study"
+                    title="BAAZ Case Study"
+                  />
                 ) : null}
-                {!project.androidLink && !project.iosLink && !project.liveLink && !project.figmaLink && project.slug !== "hospital-management-system" ? (
+                {!project.androidLink && !project.iosLink && !project.liveLink && !project.figmaLink && project.slug !== "hospital-management-system" && project.slug !== "baaz" ? (
                   <span className="text-muted-2">Coming soon</span>
                 ) : null}
               </div>
@@ -158,7 +180,7 @@ export default async function CaseStudyPage({
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={project.coverImage}
-                    alt={project.title}
+                    alt={project.coverImageAlt ?? project.title}
                     className="h-full w-full object-contain object-center"
                   />
                 </div>
@@ -203,7 +225,7 @@ export default async function CaseStudyPage({
                           {/* eslint-disable-next-line @next/next/no-img-element */}
                           <img
                             src={img}
-                            alt={`${section.heading} - Image ${imgIdx + 1}`}
+                            alt={section.imageAlts?.[imgIdx] ?? `${section.heading} - Image ${imgIdx + 1}`}
                             className="w-full h-auto object-contain"
                           />
                         </div>
