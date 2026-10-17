@@ -1,20 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import ProjectCard from "@/components/ProjectCard";
+import FeaturedWorkSlider from "@/components/FeaturedWorkSlider";
 import CapabilitiesStack from "@/components/CapabilitiesStack";
 import GraphicsShowcase from "@/components/GraphicsShowcaseServer";
-import { projects } from "@/data/projects";
-import { getProjectBySlug as getWorkProjectBySlug } from "@/data/projects_work";
+import DomainsSection from "@/components/DomainsSection";
 import SattuImage from "../../Sattu-2.png";
-
-const hospitalManagementProject = getWorkProjectBySlug("hospital-management-system");
-if (!hospitalManagementProject) {
-  throw new Error("Hospital Management System project is missing from the work data.");
-}
-
-const featuredProjects = projects.map((project) =>
-  project.slug === "invoice-maker-app" ? hospitalManagementProject : project,
-);
 
 const badgeAnimationStyle = `
   @keyframes badgeFloat {
@@ -213,38 +203,9 @@ export default function Home() {
   </div>
 </section>
 
-      {/* WORK */}
-      <section id="work" className="border-t border-white/10 bg-dark px-6 py-24 md:px-10">
-        <div className="mx-auto max-w-6xl">
-          <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-            <div>
-              <p className="section-label">Selected work</p>
-              <h2 className="mt-3 font-display text-4xl text-bg md:text-5xl">
-                Case <span className="italic">studies</span>
-              </h2>
-            </div>
-            <p className="max-w-sm text-sm leading-relaxed text-white/50">
-              Seven projects that show how I think — research, structure,
-              interface, and outcome.
-            </p>
-          </div>
+      <FeaturedWorkSlider />
 
-          <div className="mt-12 grid grid-cols-1 gap-6 text-bg md:grid-cols-2 md:gap-8">
-            {featuredProjects.map((project) => (
-              <ProjectCard key={project.slug} project={project} />
-            ))}
-          </div>
-
-          <div className="mt-12 text-center">
-            <Link
-              href="/work"
-              className="inline-flex items-center gap-2 rounded-full border border-white/30 px-6 py-3 text-sm text-bg transition-colors hover:bg-bg hover:text-dark"
-            >
-              All projects →
-            </Link>
-          </div>
-        </div>
-      </section>
+      <DomainsSection />
 
       <GraphicsShowcase />
 

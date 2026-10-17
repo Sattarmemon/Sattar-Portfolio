@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Project } from "@/data/projects";
+import { getProjectCoverImage, type Project } from "@/data/projects";
 
 export default function ProjectCard({
   project,
@@ -8,18 +8,7 @@ export default function ProjectCard({
   project: Project;
   variant?: "dark" | "light";
 }) {
-  const thumbnail =
-    project.coverImage && project.coverImage.length > 0
-      ? project.coverImage
-      : project.sections && project.sections.length
-      ? // prefer the last image in the first section that has images
-        (() => {
-          const s = project.sections.find((sec) => sec.images && sec.images.length);
-          if (!s) return "";
-          const imgs = s.images ?? [];
-          return imgs[imgs.length - 1] || imgs[0] || "";
-        })()
-      : "";
+  const thumbnail = getProjectCoverImage(project);
 
   return (
     <Link

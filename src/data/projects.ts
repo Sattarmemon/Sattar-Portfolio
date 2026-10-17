@@ -23,6 +23,8 @@ export type Project = {
   figmaLink: string;
   coverImage?: string;
   coverImageAlt?: string;
+  cardImage?: string;
+  focal?: string;
   sections: ProjectSection[];
   outcomes: string[];
 };
@@ -402,3 +404,13 @@ export const projects: Project[] = [
 ];
 export const getProjectBySlug = (slug: string) =>
   projects.find((p) => p.slug === slug);
+
+export const getProjectCoverImage = (project: Project) => {
+  if (project.coverImage) return project.coverImage;
+
+  const sectionWithImages = project.sections.find(
+    (section) => section.images && section.images.length > 0,
+  );
+  const images = sectionWithImages?.images ?? [];
+  return images[images.length - 1] || images[0] || "";
+};
