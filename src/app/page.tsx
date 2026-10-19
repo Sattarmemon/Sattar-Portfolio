@@ -4,6 +4,7 @@ import FeaturedWorkSlider from "@/components/FeaturedWorkSlider";
 import CapabilitiesStack from "@/components/CapabilitiesStack";
 import GraphicsShowcase from "@/components/GraphicsShowcaseServer";
 import DomainsSection from "@/components/DomainsSection";
+import FluidTrail from "@/components/FluidTrail";
 import SattuImage from "../../Sattu-2.png";
 
 const badgeAnimationStyle = `
@@ -224,31 +225,34 @@ export default function Home() {
       </section>
 
       {/* JOURNEY */}
-      <section id="journey" className="border-t border-line bg-dark px-6 py-24 md:px-10">
-        <div className="mx-auto max-w-6xl">
-          <p className="section-label text-gold/80">Journey</p>
-          <h2 className="mt-3 font-display text-4xl text-bg md:text-5xl">
-            4 years, <span className="italic">four teams</span>
-          </h2>
+      <section id="journey" className="relative overflow-hidden border-t border-line bg-dark px-6 py-24 md:px-10">
+        <FluidTrail />
+        <div className="relative z-10">
+          <div className="mx-auto max-w-6xl">
+            <p className="section-label text-gold/80">Journey</p>
+            <h2 className="mt-3 font-display text-4xl text-bg md:text-5xl">
+              4 years, <span className="italic">four teams</span>
+            </h2>
 
-          <div className="mt-14 divide-y divide-white/10 border-t border-white/10">
-            {journey.map((j) => (
-              <div key={j.org} className="grid gap-2 py-8 md:grid-cols-[220px_1fr] md:gap-10">
-                <span className="frame-tag text-white/40">{j.period}</span>
-                <div>
-                  <h3 className="font-display text-xl text-bg md:text-2xl">{j.role}</h3>
-                  <p className="mt-1 text-sm text-gold">{j.org}</p>
-                  <p className="mt-1 text-sm text-white/40">{j.location} &nbsp;·&nbsp; {j.duration}</p>
-                  <div className="mt-3 flex flex-wrap gap-2">
-                    {j.tags.map((t) => (
-                      <span key={t} className="rounded-full bg-white/10 px-3 py-1 text-xs text-white/70">
-                        {t}
-                      </span>
-                    ))}
+            <div className="mt-14 divide-y divide-white/10 border-t border-white/10">
+              {journey.map((j) => (
+                <div key={j.org} className="grid gap-2 py-8 md:grid-cols-[220px_1fr] md:gap-10">
+                  <span className="frame-tag text-white/40">{j.period}</span>
+                  <div>
+                    <h3 className="font-display text-xl text-bg md:text-2xl">{j.role}</h3>
+                    <p className="mt-1 text-sm text-gold">{j.org}</p>
+                    <p className="mt-1 text-sm text-white/40">{j.location} &nbsp;·&nbsp; {j.duration}</p>
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      {j.tags.map((t) => (
+                        <span key={t} className="rounded-full bg-white/10 px-3 py-1 text-xs text-white/70">
+                          {t}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -347,7 +351,9 @@ export default function Home() {
       </section>
 
       {/* ABOUT */}
-      <section id="about" className="border-t border-line bg-surface px-6 py-24 md:px-10">
+      <section id="about" className="relative overflow-hidden border-t border-line bg-surface px-6 py-24 md:px-10">
+        <FluidTrail />
+        <div className="relative z-10">
         <div className="mx-auto max-w-6xl">
           <p className="section-label">About</p>
           <h2 className="mt-1 max-w-2xl font-display text-3xl leading-snug text-ink md:text-5xl lg:max-w-6xl">
@@ -420,6 +426,7 @@ export default function Home() {
               </div>
             </div>
           </div>
+        </div>
         </div>
       </section>
     </main>
