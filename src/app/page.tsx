@@ -4,7 +4,6 @@ import FeaturedWorkSlider from "@/components/FeaturedWorkSlider";
 import CapabilitiesStack from "@/components/CapabilitiesStack";
 import GraphicsShowcase from "@/components/GraphicsShowcaseServer";
 import DomainsSection from "@/components/DomainsSection";
-import FluidTrail from "@/components/FluidTrail";
 import SattuImage from "../../Sattu-2.png";
 
 const badgeAnimationStyle = `
@@ -226,7 +225,6 @@ export default function Home() {
 
       {/* JOURNEY */}
       <section id="journey" className="relative overflow-hidden border-t border-line bg-dark px-6 py-24 md:px-10">
-        <FluidTrail />
         <div className="relative z-10">
           <div className="mx-auto max-w-6xl">
             <p className="section-label text-gold/80">Journey</p>
@@ -352,7 +350,6 @@ export default function Home() {
 
       {/* ABOUT */}
       <section id="about" className="relative overflow-hidden border-t border-line bg-surface px-6 py-24 md:px-10">
-        <FluidTrail />
         <div className="relative z-10">
         <div className="mx-auto max-w-6xl">
           <p className="section-label">About</p>

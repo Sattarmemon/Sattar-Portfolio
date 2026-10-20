@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 
 export type FluidTrailProps = {
+  global?: boolean;
   simRes?: number;
   dyeRes?: number;
   densityDissipation?: number;
@@ -456,6 +457,7 @@ function draw(gl: WebGL2RenderingContext, program: WebGLProgram, target: Target 
 }
 
 export default function FluidTrail({
+  global = false,
   simRes = 128,
   dyeRes = 1024,
   densityDissipation = 2.0,
@@ -473,7 +475,7 @@ export default function FluidTrail({
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    const section = canvas?.parentElement;
+    const section = global ? document.documentElement : canvas?.parentElement;
     if (!canvas || !section) return;
 
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -539,7 +541,12 @@ export default function FluidTrail({
     let strokeDistance = 0;
 
     const resize = (): boolean => {
-      const rect = section.getBoundingClientRect();
+      const rect = global
+        ? {
+            width: document.documentElement.clientWidth,
+            height: document.documentElement.clientHeight,
+          }
+        : section.getBoundingClientRect();
       const pixelRatio = Math.min(window.devicePixelRatio || 1, 1.5);
       const width = Math.max(1, Math.round(rect.width * pixelRatio));
       const height = Math.max(1, Math.round(rect.height * pixelRatio));
@@ -737,7 +744,14 @@ export default function FluidTrail({
 
     const handlePointerMove = (event: PointerEvent): void => {
       if (event.pointerType === "touch") return;
-      const rect = section.getBoundingClientRect();
+      const rect = global
+        ? {
+            left: 0,
+            top: 0,
+            width: document.documentElement.clientWidth,
+            height: document.documentElement.clientHeight,
+          }
+        : section.getBoundingClientRect();
       if (rect.width <= 0 || rect.height <= 0) return;
       const events = event.getCoalescedEvents?.() ?? [];
       const samples = events.length > 0 ? events : [event];
@@ -832,13 +846,18 @@ export default function FluidTrail({
     gain,
     gradientLength,
     colors,
+    global,
   ]);
 
   return (
     <canvas
       ref={canvasRef}
       aria-hidden="true"
-      className="absolute inset-0 z-0 h-full w-full pointer-events-none"
+      className={`pointer-events-none h-full w-full ${
+        global
+          ? "fixed inset-0 z-40 opacity-40"
+          : "absolute inset-0 z-0"
+      }`}
     />
   );
 }

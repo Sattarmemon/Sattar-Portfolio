@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PageLoader from "@/components/PageLoader";
+import FluidTrail from "@/components/FluidTrail";
 
 const playfair = Playfair_Display({
   variable: "--font-fraunces",
@@ -62,6 +63,7 @@ export default function RootLayout({
       >
         <Header />
         <PageLoader />
+        <FluidTrail global />
         {children}
         <Footer />
       </body>
